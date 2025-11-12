@@ -1,0 +1,21 @@
+*__pycache__/
+*layouts/
+*test_cases/
+*VERSION
+*autograder.py
+*game.py grading.py 
+Project2/game.py
+Project2/ghostAgents.py
+Project2/grading.py
+Project2/graphicsDisplay.py
+Project2/graphicsUtils.py
+Project2/keyboardAgents.py
+Project2/layout.py
+Project2/multiagentTestClasses.py
+Project2/pacman.py
+Project2/pacmanAgents.py
+Project2/projectParams.py
+Project2/testClasses.py
+Project2/testParser.py
+Project2/textDisplay.py
+Project2/util.py
