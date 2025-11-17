@@ -241,6 +241,58 @@ class ExpectimaxAgent(MultiAgentSearchAgent):
         legal moves.
         """
         "*** YOUR CODE HERE ***"
+        def expHelper(gameState, deepness, agent):
+            if agent >= gameState.getNumAgents():
+                agent = 0
+                deepness += 1
+            if (deepness==self.depth or gameState.isWin() or gameState.isLose()):
+                return self.evaluationFunction(gameState)
+            elif (agent == 0):
+                return maxFinder(gameState, deepness, agent)
+            else:
+                return expFinder(gameState, deepness, agent)
+
+        def maxFinder(gameState, deepness, agent):
+            output = ["meow", -float("inf")]
+            pacActions = gameState.getLegalActions(agent)
+
+            if not pacActions:
+                return self.evaluationFunction(gameState)
+
+            for action in pacActions:
+                currState = gameState.generateSuccessor(agent, action)
+                currValue = expHelper(currState, deepness, agent+1)
+                if type(currValue) is list:
+                    testVal = currValue[1]
+                else:
+                    testVal = currValue
+                if testVal > output[1]:
+                    output = [action, testVal]
+            return output
+
+        def expFinder(gameState, deepness, agent):
+            output = ["meow", 0]
+            ghostActions = gameState.getLegalActions(agent)
+
+            if not ghostActions:
+                return self.evaluationFunction(gameState)
+
+            probability = 1.0/len(ghostActions)
+
+            for action in ghostActions:
+                currState = gameState.generateSuccessor(agent, action)
+                currValue = expHelper(currState, deepness, agent+1)
+                if type(currValue) is list:
+                    val = currValue[1]
+                else:
+                    val = currValue
+                output[0] = action
+                output[1] += val * probability
+            return output
+
+        outputList = expHelper(gameState, 0, 0)
+        return outputList[0]
+        
         util.raiseNotDefined()
 
 def betterEvaluationFunction(currentGameState: GameState):
