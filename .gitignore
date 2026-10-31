@@ -1,2 +1,23 @@
-*__pycache__/
 *_output
+
+# Python bytecode and tool caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Compiled Java output
+*.class
+out/
+
+# Operating system and editor temporary files
+.DS_Store
+*.log
+*.tmp
+*.swp
+*~
+
+# Local Python environments
+.venv/
+venv/
